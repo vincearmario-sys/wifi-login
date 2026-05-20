@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WiFi Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 420px;
+      margin: 60px auto;
+      background: rgba(255,255,255,0.15);
+      padding: 40px 20px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+    }
+    h1 { margin-bottom: 10px; }
+    input {
+      padding: 15px;
+      width: 85%;
+      margin: 15px 0;
+      border: none;
+      border-radius: 10px;
+      font-size: 17px;
+    }
+    button {
+      padding: 15px 40px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover { background: #45a049; }
+    #success { display: none; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔐 Free WiFi Access</h1>
+    <p>Enter password to connect</p>
+
+    <input type="password" id="pass" placeholder="Enter WiFi Password" autofocus>
+    <br><br>
+    <button onclick="checkPassword()">Connect Now</button>
+
+    <div id="success">
+      <h2>✅ Successfully Connected!</h2>
+      <p><strong>Network Name:</strong> Free_WiFi_Guest</p>
+      <p><strong>Password:</strong> 123456</p>
+      <p>You can now browse the internet.</p>
+    </div>
+  </div>
+
+  <script>
+    const correctPassword = "123456";   // ← CHANGE THIS TO YOUR DESIRED PASSWORD
+
+    function checkPassword() {
+      const userInput = document.getElementById("pass").value;
+      
+      if (userInput === correctPassword) {
+        document.getElementById("success").style.display = "block";
+      } else {
+        alert("❌ Incorrect Password! Please try again.");
+      }
+    }
+  </script>
+</body>
+</html>
