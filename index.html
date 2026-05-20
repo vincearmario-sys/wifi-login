@@ -3,26 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WiFi Login</title>
+  <title>S2S WiFi Access</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       text-align: center;
-      background: linear-gradient(135deg, #667eea, #764ba2);
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
       color: white;
       margin: 0;
       padding: 20px;
       min-height: 100vh;
     }
     .container {
-      max-width: 420px;
-      margin: 60px auto;
-      background: rgba(255,255,255,0.15);
-      padding: 40px 20px;
+      max-width: 450px;
+      margin: 50px auto;
+      background: rgba(255,255,255,0.1);
+      padding: 35px 25px;
       border-radius: 20px;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
     }
-    h1 { margin-bottom: 10px; }
+    h1 { margin: 10px 0 5px; font-size: 28px; }
+    p { margin: 10px 0; }
     input {
       padding: 15px;
       width: 85%;
@@ -33,7 +35,7 @@
     }
     button {
       padding: 15px 40px;
-      background: #4CAF50;
+      background: #28a745;
       color: white;
       border: none;
       border-radius: 10px;
@@ -41,29 +43,52 @@
       cursor: pointer;
       margin-top: 10px;
     }
-    button:hover { background: #45a049; }
+    button:hover { background: #218838; }
     #success { display: none; margin-top: 20px; }
+    .wifi-info {
+      background: rgba(255,255,255,0.2);
+      padding: 15px;
+      border-radius: 10px;
+      margin: 15px 0;
+      text-align: left;
+    }
+    .copy-btn {
+      background: #007bff;
+      padding: 8px 15px;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>🔐 Free WiFi Access</h1>
+    <h1>🔐 S2S Free WiFi</h1>
     <p>Enter password to connect</p>
 
     <input type="password" id="pass" placeholder="Enter WiFi Password" autofocus>
     <br><br>
-    <button onclick="checkPassword()">Connect Now</button>
+    <button onclick="checkPassword()">Connect to WiFi</button>
 
     <div id="success">
-      <h2>✅ Successfully Connected!</h2>
-      <p><strong>Network Name:</strong> Free_WiFi_Guest</p>
-      <p><strong>Password:</strong> 123456</p>
-      <p>You can now browse the internet.</p>
+      <h2>✅ Connected Successfully!</h2>
+      
+      <div class="wifi-info">
+        <p><strong>Network 1 (Recommended):</strong> <span id="wifiName1">S2S_5GHz_7cXEZh</span></p>
+        <p><strong>Password:</strong> <span id="wifiPass1">YourPasswordHere</span> 
+           <button class="copy-btn" onclick="copyPassword('wifiPass1')">Copy</button></p>
+      </div>
+
+      <div class="wifi-info">
+        <p><strong>Network 2:</strong> <span id="wifiName2">S2S_7cXEZh</span></p>
+        <p><strong>Password:</strong> <span id="wifiPass2">YourPasswordHere</span> 
+           <button class="copy-btn" onclick="copyPassword('wifiPass2')">Copy</button></p>
+      </div>
+
+      <p><small>You can now connect to the WiFi using the details above.</small></p>
     </div>
   </div>
 
   <script>
-    const correctPassword = "123456";   // ← CHANGE THIS TO YOUR DESIRED PASSWORD
+    const correctPassword = "S2S12345";   // ← CHANGE THIS TO YOUR REAL PASSWORD
 
     function checkPassword() {
       const userInput = document.getElementById("pass").value;
@@ -73,6 +98,13 @@
       } else {
         alert("❌ Incorrect Password! Please try again.");
       }
+    }
+
+    function copyPassword(id) {
+      const text = document.getElementById(id).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("✅ Password copied to clipboard!");
+      });
     }
   </script>
 </body>
